@@ -56,7 +56,11 @@ blank3 = "code"
 Enter your solution below.
 
 ```elixir
+first_word = "person"
+second_word = "human interactions"
+third_word = "restraining orders"
 
+"A programer is a " <> first_word <> " that turns " <> second_word <> " into " <> third_word
 ```
 
 ## String Interpolation Madlib
@@ -81,7 +85,11 @@ blank3 = "foobar"
 Enter your solution below.
 
 ```elixir
+first = "concrete"
+second = "asphalt"
+third = "hell"
 
+"#{first} and #{second} combined makes #{third}"
 ```
 
 ## Commit Your Progress
