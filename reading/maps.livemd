@@ -205,6 +205,8 @@ map[:hello]
 
 ```elixir
 map = %{hello: "world"}
+IO.inspect(map.hello)
+IO.inspect(map[:hello])
 ```
 
 ### Updating Maps
@@ -265,7 +267,14 @@ todo = %{title: "finish maps exercise", completed: false}
 </details>
 
 ```elixir
+todo_item = %{
+  title: ~c"finish maps exercises",
+  completed: false
+}
 
+IO.inspect(todo_item)
+
+todo_item = %{todo_item | completed: true}
 ```
 
 ## Pattern Matching
@@ -344,7 +353,7 @@ Bind `2` and `4` in the following map to variables `two` and `four`.
 Enter your solution below.
 
 ```elixir
-%{one: 1, two: 2, three: 3, four: 4}
+%{two: two, four: four} = %{one: 1, two: 2, three: 3, four: 4}
 ```
 
 ## Further Reading
