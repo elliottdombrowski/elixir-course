@@ -120,7 +120,8 @@ end
 Call the `MutliParamExample.call/3` function with different arguments.
 
 ```elixir
-
+IO.inspect(MultiParamExample.call("first", "second", "third"))
+IO.inspect(MultiParamExample.call(1, 2, 3))
 ```
 
 ## Internal Module Functions
@@ -182,8 +183,12 @@ You can create a private module function with `defp` instead of `def`. You'll no
 
 ```elixir
 defmodule PrivateThoughts do
-  defp think() do
+  defp thinking() do
     "I really want to say hi..."
+  end
+
+  def think() do
+    thinking()
   end
 end
 
@@ -318,7 +323,13 @@ end
 Enter your solution below.
 
 ```elixir
+defmodule Languages.Testing do
+  def greeting do
+    "hello"
+  end
+end
 
+Languages.Testing.greeting()
 ```
 
 ### Nested Modules
@@ -357,8 +368,8 @@ We use the `@` symbol to define a compile-time module attribute.
 
 ```elixir
 defmodule Hero do
-  @name "Spider-Man"
-  @nemesis "Green Goblin"
+  @name "Doom Guy"
+  @nemesis "Hell Itself"
 
   def introduce do
     "Hello, my name is #{@name}!"
@@ -369,7 +380,7 @@ defmodule Hero do
   end
 
   def defeat do
-    "I #{@name} will defeat you #{@nemesis}!"
+    "I #{@name} will defeat #{@nemesis}!"
   end
 end
 ```
@@ -477,7 +488,7 @@ defmodule MultipleFunctionClauses do
   end
 end
 
-MultipleFunctionClauses.my_function(1)
+MultipleFunctionClauses.my_function(1, 2)
 ```
 
 Each function clause has a different **arity**. We can treat each function with a different arity as a completely separate function. In Elixir, we ofen refer to functions by their name and arity.
@@ -516,7 +527,32 @@ end
 </details>
 
 ```elixir
+defmodule Math do
+  @moduledoc """
+    Houses functions for simple addition calculations
+  """
 
+  @doc """
+  iex> Math.add(1, 2)
+  3
+  """
+  def add(int1, int2) do
+    int1 + int2
+  end
+
+  @doc """
+  iex> Math.add(1, 2, 3)
+  6
+  """
+  def add(int1, int2, int3) do
+    int1 + int2 + int3
+  end
+end
+
+# 7
+IO.inspect(Math.add(2, 5))
+# 6
+IO.inspect(Math.add(1, 2, 3))
 ```
 
 ## Default Arguments
@@ -555,7 +591,7 @@ end
 ```
 
 ```elixir
-MutlipleDefaultArgs.all_defaults()
+MutlipleDefaultArgs.all_defaults("new arg")
 ```
 
 We can even provide default arguments for only some parameters in the function.
@@ -583,7 +619,15 @@ Greeting.hello("Andrew")
 ```
 
 ```elixir
+defmodule Greeting do
+  def hello(name \\ "default") do
+    "Hello #{name}!"
+  end
+end
 
+IO.inspect(Greeting.hello())
+
+IO.inspect(Greeting.hello("Andrew"))
 ```
 
 ## Documentation
@@ -668,7 +712,7 @@ defmodule DoctestFailure do
     "expected return value"
   """
   def test do
-    "actual return value"
+    "expected return value"
   end
 end
 ```
@@ -697,23 +741,23 @@ Uncomment the following code and evaluate the cell to see an example. Re-comment
 
 ```elixir
 # defmodule DoctestCrash Do
-# @moduledoc """
-# DoctestCrash
+#   @moduledoc """
+#   DoctestCrash
 
-# Explains Doctest Crashes With Examples
-# """
+#   Explains Doctest Crashes With Examples
+#   """
 
-# @doc """
-# Purposely Crashes Doctest Using Invalid Pattern Matching
+#   @doc """
+#   Purposely Crashes Doctest Using Invalid Pattern Matching
 
-# ## Examples
+#   ## Examples
 
-# iex> {} = DoctestCrash.crash()
-# "2"
-# """
-# def crash do
+#   iex> {} = DoctestCrash.crash()
+#   "2"
+#   """
+#   def crash do
 
-# end
+#   end
 # end
 ```
 
