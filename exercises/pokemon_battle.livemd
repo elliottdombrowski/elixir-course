@@ -125,9 +125,23 @@ defmodule Pokemon do
       iex> Pokemon.attack(attacker, defender)
       %Pokemon{name: "Bulbasaur", type: :grass, health: 10.0, attack: 5, speed: 20}
   """
-  defstruct []
+  defstruct [:name, :type, health: 20.0, attack: 5, speed: 20]
 
   def attack(attacker, defender) do
+    damage = attacker.attack * damage_modifier(attacker.type, defender.type)
+    %Pokemon{defender | health: defender.health - damage}
+  end
+
+  def damage_modifier(attacker_type, defender_type) do
+    case {attacker_type, defender_type} do
+      {:fire, :grass} -> 2
+      {:grass, :water} -> 2
+      {:water, :fire} -> 2
+      {:fire, :water} -> 0.5
+      {:grass, :fire} -> 0.5
+      {:water, :grass} -> 0.5
+      _no_modifier -> 1
+    end
   end
 end
 ```
@@ -135,7 +149,10 @@ end
 Consider using the following Elixir cell to test your solution.
 
 ```elixir
+attacker = %Pokemon{name: "Charmander", type: :fire}
+defender = %Pokemon{name: "Squirtle", type: :water}
 
+Pokemon.attack(attacker, defender)
 ```
 
 ### Pokemon Instances
@@ -186,7 +203,13 @@ Pokemon.attack(charmander, bulbasaur)
 Enter your solution below.
 
 ```elixir
+charmander = %Pokemon{name: "Charmander", type: :fire}
+bulbasaur = %Pokemon{name: "Bulbasaur", type: :grass}
+squirtle = %Pokemon{name: "Squirtle", type: :water}
 
+IO.inspect(Pokemon.attack(bulbasaur, squirtle))
+IO.inspect(Pokemon.attack(charmander, squirtle))
+IO.inspect(Pokemon.attack(bulbasaur, charmander))
 ```
 
 ## Commit Your Progress
