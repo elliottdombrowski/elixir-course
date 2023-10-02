@@ -228,7 +228,13 @@ defmodule CharacterCount do
       4
   """
   def count(string) do
+    # Mine
     Enum.count(String.split(string, "", trim: true))
+
+    # Alternative
+    string
+    |> String.split("", trim: true)
+    |> Enum.count()
   end
 end
 ```
