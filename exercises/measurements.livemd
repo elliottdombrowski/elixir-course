@@ -84,7 +84,7 @@ defmodule Measurements do
   def increments(measurements) do
     measurements
     |> Enum.chunk_every(2, 1, :discard)
-    |> Enum.map(fn [x, y] -> y + x end)
+    |> Enum.map(fn [x, y] -> y - x end)
   end
 
   @doc """
