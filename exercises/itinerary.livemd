@@ -74,6 +74,12 @@ defmodule Itinerary do
     
   """
   def has_time?(start, finish, minutes) do
+    activity_timeframe = DateTime.add(start, minutes, :minute)
+
+    case DateTime.compare(activity_timeframe, finish) do
+      :gt -> false
+      _ -> true
+    end
   end
 end
 ```
