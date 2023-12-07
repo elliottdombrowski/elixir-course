@@ -243,8 +243,8 @@ defmodule NumberTest do
   use ExUnit.Case
 
   test "double/1" do
-    assert Number.double(2) == 4
-    assert Number.double(3) == 6
+    assert Number.double(2) == 4, "Should eq 4"
+    assert Number.double(3) == 6, "Should eq 6"
   end
 end
 
